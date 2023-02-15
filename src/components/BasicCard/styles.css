@@ -1,0 +1,38 @@
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-card {
+  width: 250px;
+  min-height: 250px;
+  background: #f8f9fd;
+  border-radius: 10px;
+  gap: 30px;
+  padding: 10px;
+  box-shadow: 0px 10px 24px rgb(0 0 0 / 15%);
+  display: flex;
+  justify-content: space-between;
+}
+
+.content-infos {
+  gap: 15px;
+}
+
+.content-link-h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #494949;
+}
+
+.content-link-cite {
+  font-size: 0.875rem;
+  color: #010101;
+  font-weight: 400;
+  color: #494949;
+}
+
+.content-actions {
+  display: flex;
+  gap: 10px;
+}

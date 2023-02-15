@@ -1,0 +1,14 @@
+
+
+.title-home {
+  font-weight: 700;
+  line-height: 28px;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+.cards {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}

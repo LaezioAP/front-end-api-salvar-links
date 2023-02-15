@@ -1,0 +1,34 @@
+.content-form {
+  width: 513px;
+  height: 700px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 33px;
+}
+
+.content-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-forms {
+  all: unset;
+  width: 400px;
+  height: 50px;
+  padding: 0 10px;
+  background: #ffffff;
+  border: 1px solid #555555;
+  border-radius: 5px;
+}
+
+.style-label {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: #484848;
+}

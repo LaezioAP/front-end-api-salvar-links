@@ -1,0 +1,14 @@
+.container {
+  max-width: 100vw;
+  min-height: 100vh;
+  background: #eff2f8;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  gap: 20px;
+}
+
+.border {
+  border: 1px solid #9677ef;
+  max-height: 100%;
+}
