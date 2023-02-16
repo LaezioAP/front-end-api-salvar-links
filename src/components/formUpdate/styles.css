@@ -1,0 +1,10 @@
+.form-update-URL {
+  width: 513px;
+  height: 535px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 33px;
+}

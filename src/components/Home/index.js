@@ -9,9 +9,7 @@ const Home = () => {
 
   useEffect(() => {
     getLinks();
-  }, []);
-
-  useEffect(() => {}, [registros]);
+  }, [registros]);
 
   return (
     <div className="content-home">
