@@ -5,6 +5,7 @@ import * as yup from "yup";
 import { AuthContext } from "../../providers/auth";
 import api from "../../services/api";
 import { getItem } from "../../utils/storage";
+import { UserLogin } from "../UserLogin";
 import "./styles.css";
 
 const schema = yup
@@ -41,13 +42,17 @@ const RegisterBar = () => {
 
   return (
     <form className="content-register" onSubmit={handleSubmit(onSubmit)}>
-      <input
-        type="text"
-        className="content-input style-font style-placeholder"
-        placeholder="Coloque uma URL https://..."
-        {...register("url")}
-      />
-      <button className="style-button">Adicionar</button>
+      <div className="input-url">
+        <input
+          type="text"
+          className="content-input style-font style-placeholder"
+          placeholder="Coloque uma URL https://..."
+          {...register("url")}
+        />
+        <button className="style-button">Adicionar</button>
+      </div>
+
+      <UserLogin />
     </form>
   );
 };

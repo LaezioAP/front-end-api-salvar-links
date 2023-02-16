@@ -12,8 +12,8 @@ const schema = yup
     nome: yup.string().required("O nomo é obrigatório"),
     email: yup
       .string()
-      .email("Digite um E-mail válido")
-      .required("O E-mail é obrigatório"),
+      .email("Digite um e-mail válido")
+      .required("O e-mail é obrigatório"),
     senha: yup
       .string()
       .min(6, "A senha deve ter pelo menos 6 digitos")

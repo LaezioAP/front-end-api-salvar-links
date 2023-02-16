@@ -11,7 +11,7 @@ const schema = yup
     email: yup
       .string()
       .email("Digite um e-mail válido")
-      .required("O E-mail é obrigatório"),
+      .required("O e-mail é obrigatório"),
     senha: yup.string().required("O campo senha é obrigatório"),
   })
   .required();
@@ -74,7 +74,7 @@ const Login = () => {
         </div>
 
         <div className="style-change">
-          <button className="style-button-form">Cadastrar</button>
+          <button className="style-button-form">Login</button>
 
           <Link className="style-link-react" to="/cadastrar">
             Não tem cadastro? Clique aqui!
