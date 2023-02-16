@@ -1,9 +1,12 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
+import { AlertInfo } from "../../components/AlertInfo";
 import api from "../../services/api";
 import { setItem } from "../../utils/storage";
+
 import "./styles.css";
 
 const schema = yup
@@ -16,6 +19,9 @@ const schema = yup
   })
   .required();
 const Login = () => {
+  const [open, setOpen] = useState(false);
+  const [mensagemOculta, setMensagem] = useState("");
+  const [accept, setAccept] = useState(false);
   const navigate = useNavigate();
 
   const {
@@ -25,6 +31,14 @@ const Login = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
+  function alertMessage(info) {
+    setMensagem(info);
+    setOpen(true);
+    setTimeout(() => {
+      setOpen(false);
+    }, 2.0 * 1000);
+  }
 
   const onSubmit = async (data) => {
     try {
@@ -36,12 +50,17 @@ const Login = () => {
       setItem("id", flowData.data.id);
       setItem("nome", flowData.data.nome);
       setItem("token", flowData.data.token);
-      navigate("/dashboard");
+
+      setAccept(true);
+      alertMessage("Login realizado com sucesso!");
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 2.0 * 1000);
     } catch (error) {
-      console.log(error.response.data);
+      setAccept(false);
+      alertMessage(error.response.data);
     }
   };
-
 
   return (
     <div className="container-login-cadastro">
@@ -81,6 +100,7 @@ const Login = () => {
           </Link>
         </div>
       </form>
+      <AlertInfo open={open} mensagemOculta={mensagemOculta} accept={accept} />
     </div>
   );
 };

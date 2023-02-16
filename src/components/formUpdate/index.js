@@ -2,13 +2,26 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/auth";
 import api from "../../services/api";
 import { getItem } from "../../utils/storage";
-import "./styles.css"
+import { AlertInfo } from "../AlertInfo";
+import "./styles.css";
 
 export const UpdateRegister = ({ idCard, handleClose }) => {
   const hooks = useContext(AuthContext);
   const { getLinks } = hooks.links;
   const [inputUrl, setInputUrl] = useState("");
   const [inputTitle, setInputTitle] = useState("");
+
+  const [open, setOpen] = useState(false);
+  const [mensagemOculta, setMensagem] = useState("");
+  const [accept, setAccept] = useState(false);
+
+  function alertMessage(info) {
+    setMensagem(info);
+    setOpen(true);
+    setTimeout(() => {
+      setOpen(false);
+    }, 2.0 * 1000);
+  }
 
   const handleChangeUrl = (event) => {
     setInputUrl(event.target.value);
@@ -21,12 +34,12 @@ export const UpdateRegister = ({ idCard, handleClose }) => {
   const updateRegister = async (event) => {
     event.preventDefault();
 
-    if (!inputUrl && !inputTitle.titulo) {
-      return console.log("Pelo menos um campo deve ser preenchido!");
+    if (!inputUrl && !inputTitle) {
+      return alertMessage("Pelo menos um campo deve ser preenchido!");
     }
-    
+
     try {
-      const { data } = await api.put(
+      await api.put(
         `/dashboard/${idCard}`,
         {
           url: inputUrl,
@@ -40,10 +53,10 @@ export const UpdateRegister = ({ idCard, handleClose }) => {
       );
 
       getLinks();
-      handleClose()
-      console.log(data);
+      handleClose();
     } catch (error) {
-      console.log(error.response.data);
+      setAccept(false);
+      alertMessage(error.response.data);
     }
   };
   return (
@@ -77,9 +90,9 @@ export const UpdateRegister = ({ idCard, handleClose }) => {
         />
       </div>
 
-      <button className="style-button-form">
-        Salvar
-      </button>
+      <button className="style-button-form">Salvar</button>
+
+      <AlertInfo open={open} mensagemOculta={mensagemOculta} accept={accept} />
     </form>
   );
 };

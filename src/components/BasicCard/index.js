@@ -12,22 +12,17 @@ import "./styles.css";
 export default function BasicCard({ card }) {
   const hooks = useContext(AuthContext);
   const { getLinks } = hooks.links;
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [openModal, setOpenModal] = useState(false);
+  const handleOpen = () => setOpenModal(true);
+  const handleClose = () => setOpenModal(false);
 
   const deleteRegister = async (idCard) => {
-    try {
-      const flowData = await api.delete(`/dashboard/${idCard}`, {
-        headers: {
-          authorization: `Bearer ${getItem("token")}`,
-        },
-      });
-      getLinks();
-      console.log(flowData.data);
-    } catch (error) {
-      console.log(error.response.data);
-    }
+    await api.delete(`/dashboard/${idCard}`, {
+      headers: {
+        authorization: `Bearer ${getItem("token")}`,
+      },
+    });
+    getLinks();
   };
 
   return (
@@ -75,7 +70,7 @@ export default function BasicCard({ card }) {
       </div>
 
       <Modal
-        open={open}
+        open={openModal}
         onClose={handleClose}
         sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
       >

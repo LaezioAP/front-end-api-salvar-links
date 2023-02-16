@@ -1,8 +1,10 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
 
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
+import { AlertInfo } from "../../components/AlertInfo";
 import api from "../../services/api";
 
 import "./styles.css";
@@ -28,6 +30,18 @@ const schema = yup
 const RegisterUser = () => {
   const navigate = useNavigate();
 
+  const [open, setOpen] = useState(false);
+  const [mensagemOculta, setMensagem] = useState("");
+  const [accept, setAccept] = useState(false);
+
+  function alertMessage(info) {
+    setMensagem(info);
+    setOpen(true);
+    setTimeout(() => {
+      setOpen(false);
+    }, 2.0 * 1000);
+  }
+
   const {
     register,
     handleSubmit,
@@ -38,15 +52,20 @@ const RegisterUser = () => {
 
   const onSubmit = async (data) => {
     try {
-      await api.post("/cadastrar-usuario", {
+      const flowData = await api.post("/cadastrar-usuario", {
         nome: data.nome,
         email: data.email,
         senha: data.senha,
       });
 
-      navigate("/login");
+      setAccept(true);
+      alertMessage(flowData.data);
+      setTimeout(() => {
+        navigate("/login");
+      }, 2.0 * 1000);
     } catch (error) {
-      console.log(error.response.data);
+      setAccept(false);
+      alertMessage(error.response.data);
     }
   };
 
@@ -114,6 +133,7 @@ const RegisterUser = () => {
           </Link>
         </div>
       </form>
+      <AlertInfo open={open} mensagemOculta={mensagemOculta} accept={accept} />
     </div>
   );
 };
