@@ -1,8 +1,10 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import api from "../../services/api";
+
 import "./styles.css";
 
 const schema = yup
@@ -10,8 +12,8 @@ const schema = yup
     nome: yup.string().required("O nomo é obrigatório"),
     email: yup
       .string()
-      .email("Digite um e-mail válido")
-      .required("O e-mail é obrigatório"),
+      .email("Digite um E-mail válido")
+      .required("O E-mail é obrigatório"),
     senha: yup
       .string()
       .min(6, "A senha deve ter pelo menos 6 digitos")
@@ -54,19 +56,29 @@ const RegisterUser = () => {
         <h1 className="style-form">Cadastre-se</h1>
 
         <div className=" content-inputs">
-          <label className="style-label" htmlFor="">
+          <label className="style-label" htmlFor="label-name">
             Nome
           </label>
-          <input type="text" className="input-forms" {...register("nome")} />
-          {errors.nome?.message}
+          <input
+            id="label-name"
+            type="text"
+            className="input-forms"
+            {...register("nome")}
+          />
+          <span className="error-inputs">{errors.nome?.message}</span>
         </div>
 
         <div className="content-inputs">
-          <label className="style-label" htmlFor="">
+          <label className="style-label" htmlFor="label-email">
             E-mail
           </label>
-          <input type="text" className=" input-forms" {...register("email")} />
-          {errors.email?.message}
+          <input
+            id="label-email"
+            type="text"
+            className=" input-forms"
+            {...register("email")}
+          />
+          <span className="error-inputs">{errors.email?.message}</span>
         </div>
 
         <div className="content-inputs">
@@ -79,7 +91,7 @@ const RegisterUser = () => {
             type="password"
             className=" input-forms"
           />
-          {errors.senha?.message}
+          <span className="error-inputs">{errors.senha?.message}</span>
         </div>
 
         <div className="content-inputs">
@@ -92,7 +104,7 @@ const RegisterUser = () => {
             type="password"
             className="input-forms width-height"
           />
-          {errors.confirmarSenha?.message}
+          <span className="error-inputs">{errors.confirmarSenha?.message}</span>
         </div>
 
         <div className="style-change">

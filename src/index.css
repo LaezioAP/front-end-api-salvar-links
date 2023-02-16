@@ -87,3 +87,13 @@ a {
   flex-direction: column;
   padding: 30px;
 }
+
+.error-inputs {
+  color: #e70000;
+  position: absolute;
+  bottom: -22px;
+  left: 4px;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+}

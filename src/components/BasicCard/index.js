@@ -7,12 +7,22 @@ export default function BasicCard({ card }) {
     <div className="container-card flex-column">
       <div className="content-infos flex-column">
         <h2>
-          <a className="content-link-h2" target="_blank" href={`${card.url}`} rel="noreferrer noopener">
+          <a
+            className="content-link-h2"
+            target="_blank"
+            href={`${card.url}`}
+            rel="noreferrer noopener"
+          >
             {card.title}
           </a>
         </h2>
         <cite>
-          <a className="content-link-cite" href={`${card.url}`} rel="noreferrer noopener">
+          <a
+            className="content-link-cite"
+            target="_blank"
+            href={`${card.url}`}
+            rel="noreferrer noopener"
+          >
             {card.url}
           </a>
         </cite>
