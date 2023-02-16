@@ -37,7 +37,7 @@ const RegisterBar = () => {
 
   const onSubmit = async (data) => {
     try {
-      const flowData = await api.post(
+      await api.post(
         "/adicionar-url",
         { url: data.url },
         {
@@ -48,7 +48,6 @@ const RegisterBar = () => {
       );
       getLinks();
       setAccept(true);
-      alertMessage(flowData.data);
     } catch (error) {
       setAccept(false);
       alertMessage(error.response.data);
