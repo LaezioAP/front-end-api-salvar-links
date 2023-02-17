@@ -38,7 +38,7 @@ export default function BasicCard({ card }) {
             {card.title}
           </a>
         </h2>
-        <cite>
+        <cite className="text-overflow">
           <a
             className="content-link-cite"
             target="_blank"
